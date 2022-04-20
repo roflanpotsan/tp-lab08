@@ -1,0 +1,14 @@
+name: lab-07
+on: [push]
+jobs:
+ build_and_run:
+  runs-on: ubuntu-latest  
+  steps:
+    - name: checkout
+      uses: actions/checkout@master
+    - name: build_and_run_my_project
+      run: |
+       cmake -B ./project_output
+       cd project_output
+       make
+       ./test_project
