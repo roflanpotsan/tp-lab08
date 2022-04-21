@@ -1,4 +1,4 @@
-name: lab-07
+name: lab-08
 on: [push]
 jobs:
  build_and_run:
@@ -6,9 +6,9 @@ jobs:
   steps:
     - name: checkout
       uses: actions/checkout@master
-    - name: build_and_run_my_project
+    - name: build_and_run_my_project_with_docker
       run: |
-       cmake -B ./project_output
-       cd project_output
-       make
-       ./test_project
+        docker build -t test_project .
+        mkdir logs
+        docker run -it -v "$(pwd)/logs/:/home/logs/" test_project > logs/log.txt
+        cat logs/log.txt
