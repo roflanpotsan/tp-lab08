@@ -9,6 +9,4 @@ jobs:
     - name: build_and_run_my_project_with_docker
       run: |
         docker build -t test_project .
-        mkdir logs
-        docker run -it -v "$(pwd)/logs/:/home/logs/" test_project > logs/log.txt
-        cat logs/log.txt
+        docker run test_project
